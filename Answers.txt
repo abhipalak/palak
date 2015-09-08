@@ -1,0 +1,272 @@
+
+
+     // write an example of a javascript closure
+	 
+	 function showName (firstName, lastName) {
+		
+		​var nameIntro = "Your name is ";
+		
+		function makeFullName () {  
+		​return nameIntro + firstName + " " + lastName;
+	}
+​
+​		return makeFullName ();
+	}
+​
+		showName ("Test", "User"); 
+		
+	 
+
+     // define a json object that represents a collection of people.
+     // each person should have the following properties
+     // - first name
+     // - last name
+     // - city
+     // - state
+     // - zip
+     // - a collection of phone numbers (home, work, mobile)
+	 
+	 
+	 var rootbj = {};
+var employees = []
+
+
+rootbj.employees = employees;
+
+var firstName = "John";
+var lastName = "Smith";
+var city = "NY";
+var state = "NY";
+var zip = "1111";
+var homeNumber = "2222";
+var workNumber = "2222";
+var mobileNumber = "2222";
+
+var phoneNumbers = {
+    
+    "homeNumber": homeNumber,
+    "workNumber": workNumber,
+    "mobileNumber":mobileNumber
+    
+    
+}
+
+
+var employee = {
+    "firstName": firstName,
+    "lastName": lastName,
+    "city":city,
+    "state":state,
+    "zip":zip,
+   
+}
+
+rootbj.employees.push(employee);
+
+
+rootbj.employees[0].numbers = JSON.stringify(phoneNumbers);
+
+
+console.log(JSON.stringify(rootbj));
+
+	 
+	 
+
+
+     // Create a javascript object (DataTable) with the following:
+     // A private columns property (string array)
+     // A private rows property (string array)
+     // A public method addRows that adds an item to the rows array
+     // A public method addColumns that adds an item to the columns array
+     // A public method getData that returns the a json object representation of the DataTable
+     // Note: the row object should be a hash of the column name and row item value
+     // Example:
+     // .addColumns('column1', 'column2', 'column3');
+     // .addRow('value1A', 'value1B', 'value1C');
+     // .addRow('value2A', 'value2B', 'value2C');
+	 
+	 
+	function DataTable (columns, rows) {
+		this.columns = columns;
+		this.rows = rows;
+	}
+ 
+	DataTable.prototype.addRows = function(rowValue) {
+		this.rows.push(rowValue);
+
+	};
+	 
+	 
+	DataTable.prototype.addColumns = function(colValue) {
+		this.columns.push(colValue);
+
+	}
+	
+	DataTable.prototype.getData = function() {
+	
+		var json = [];
+	
+		for (i=0;i<this.rows.length;i++){
+			
+			json.push({"row":this.columns[i]+"#"+this.rows[i]});
+			
+	}
+	
+		return json;
+	};
+	 
+	 
+
+     // within div1, programatically create a
+     // SELECT element (with multiple items) and a button.
+     // when the button is clicked write out the name and value of the selected item to the console.
+	 
+	var div1 = document.getElementById("div1");
+	 
+	var select = document.createElement("select");
+	 select.name = "Items";
+	 select.id = "Items";
+	 
+	var option = document.createElement("option");
+		option.text = "First";
+		option.value = "First";
+		
+	select.appendChild(option);
+
+	option = document.createElement("option");
+		option.text = "Second";
+		option.value = "Second";
+
+	select.appendChild(option);
+	div1.appendChild(select);
+
+	
+	var newButton = document.createElement("input");
+		newButton.type = "button";
+		newButton.value = "Select";
+		newButton.id = "Select";
+    
+	document.getElementById("div1").appendChild(newButton);	
+
+	var element1 = document.getElementById("Select");
+	
+	element1.addEventListener("click", SelectValue);
+	
+	
+	function SelectValue() {
+	
+	var e = document.getElementById("Items");
+	var itemName = e.options[e.selectedIndex].name;
+	var itemValue = e.options[e.selectedIndex].value;
+	
+	console.log(" Name "+itemName+" Value "+itemValue);
+	
+	}
+	
+	
+	
+     // Write 5 different jQuery selectors to retrieve the
+     // sample anchor in the markup below.
+	 
+	 
+	 $( "#linkId" );
+	 $( ".linkClass" );
+	 $( "#parentOfATag a" );
+	 $( "a.havingThisClass:first" );
+	 $( "a:gt(2)" );
+	 
+	 
+
+     // Programatically create an array with 5 items.  Create a list item for each item in the array
+     // and add the list items to the unordered list with an id of "list1".
+	 
+		var arr = [];
+		
+		for(var i=1; i<=5; i++) {
+			arr.push("Element "+i);
+	
+		}
+	 
+		var list = document.getElementById('list1');
+		
+		
+		for (i=0;i<arr.length;i++) {
+		
+		var entry = document.createElement('li');
+		entry.appendChild(document.createTextNode(arr[i]));
+		
+		list.appendChild(entry);
+		
+		}
+		
+	 
+
+     // Use javascript to add a list of checkboxes and 2 links
+     // to the div with an id of "foobar"
+     // When the first link is clicked, all the checkboxes should be checked (i.e. check all)
+     // When the second link is clicked, all the checkboxes should be unchecked (i.e. uncheck all)
+
+	  var newCheckbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = "One";
+    document.getElementById("foobar").appendChild(newCheckbox);
+	
+	 newCheckbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = "Two";
+    document.getElementById("foobar").appendChild(newCheckbox);
+	
+	var aTag = document.createElement('a');
+	aTag.setAttribute('href',"#");
+	aTag.id = "Check";
+	aTag.innerHTML = "Check All";
+	document.getElementById("foobar").appendChild(aTag);
+	
+	
+	aTag = document.createElement('a');
+	aTag.setAttribute('href',"#");
+	aTag.id = "UnCheck";
+	aTag.innerHTML = "UnCheck All";
+	document.getElementById("foobar").appendChild(aTag);
+	
+	var element1 = document.getElementById("Check");
+	
+	element1.addEventListener("click", CheckAll);
+	
+	var element2 = document.getElementById("UnCheck");
+	
+	element2.addEventListener("click", UnCheckAll)
+	
+	function CheckAll() {
+	
+	  var checkboxes = document.getElementsByTagName('input');
+	  
+	   for (var i = 0; i < checkboxes.length; i++) {
+             if (checkboxes[i].type == 'checkbox') {
+                 checkboxes[i].checked = true;
+             }
+         }
+	
+	}
+	
+	function UnCheckAll() {
+	
+	var checkboxes = document.getElementsByTagName('input');
+	  
+	   for (var i = 0; i < checkboxes.length; i++) {
+             if (checkboxes[i].type == 'checkbox') {
+                 checkboxes[i].checked = false;
+             }
+         }
+	
+	
+	
+	
+	}
+	
+	
+
+
+	 
+	 
+	 
